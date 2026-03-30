@@ -26,5 +26,16 @@ contract PackVariablesTest is Test {
 }
 
 contract PackVariablesOptimizedTest is Test {
-/* YOUR SOLUTION GOES HERE */
+    PackVariablesOptimized packVariables;
+    uint8[30] arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    function setUp() public {
+        packVariables = new PackVariablesOptimized();
+    }
+
+    function test_set() public {
+        packVariables.setValues(
+            0xbe, 0xbebebe, 0xdeadbeefdeadbeefdeadbeefdeadbeefdead, arr, 0xdeadbeefdeadbeefdeadbeefdead, 0xff
+        );
+    }
 }

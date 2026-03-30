@@ -35,5 +35,29 @@ contract ArithmeticOperatorsTest is Test {
 }
 
 contract ArithmeticOperatorsOptimizedTest is Test {
-/* YOUR SOLUTION GOES HERE */
+    AdditionOptimized addition;
+    SubtractionOptimized subtraction;
+    DivisionOptimized division;
+
+    function setUp() public {
+        addition = new AdditionOptimized();
+        subtraction = new SubtractionOptimized();
+        division = new DivisionOptimized();
+    }
+
+    function test_Addition() public {
+        addition.addition(10);
+    }
+
+    function test_Subtraction() public {
+        subtraction.subtraction(10);
+    }
+
+    function test_DivisionBy2() public view {
+        division.divisionBy2(1024);
+    }
+
+    function test_DivisionBy128() public view {
+        division.divisionBy128(1024);
+    }
 }

@@ -21,5 +21,15 @@ contract SwapTest is Test {
 }
 
 contract SwapOptimizedTest is Test {
-/* YOUR SOLUTION GOES HERE */
+    SwapOptimized swap;
+
+    function setUp() public {
+        swap = new SwapOptimized();
+    }
+
+    function test_swap() public view {
+        (uint256 a, uint256 b) = swap.swap(300, 200);
+        assertEq(a, 200);
+        assertEq(b, 300);
+    }
 }

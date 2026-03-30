@@ -22,5 +22,16 @@ contract NestedIfTest is Test {
 }
 
 contract NestedIfOptimizedTest is Test {
-/* YOUR SOLUTION GOES HERE */
+    NestedIfOptimized nestedIf;
+
+    function setUp() public {
+        nestedIf = new NestedIfOptimized();
+    }
+
+    function test_call() public view {
+        nestedIf.call(101);
+        nestedIf.call(50);
+        nestedIf.call(44);
+        nestedIf.call(69);
+    }
 }
