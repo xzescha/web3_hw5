@@ -34,12 +34,7 @@ contract MultiSigWalletOptimizedTest is Test {
         wallet.submitTransaction(address(0x4), 100);
         assertEq(wallet.getTransactionCount(), 1);
 
-        (
-            address destination,
-            bool executed,
-            uint8 confirmationCount,
-            uint256 value
-        ) = wallet.transactions(0);
+        (address destination, bool executed, uint8 confirmationCount, uint256 value) = wallet.transactions(0);
 
         assertEq(destination, address(0x4));
         assertEq(value, 100);
@@ -57,7 +52,7 @@ contract MultiSigWalletOptimizedTest is Test {
         assertEq(confirmations.length, 1);
         assertEq(confirmations[0], owner1);
 
-        (, , uint8 confirmationCount, ) = wallet.transactions(0);
+        (,, uint8 confirmationCount,) = wallet.transactions(0);
         assertEq(confirmationCount, 1);
         vm.stopPrank();
     }
@@ -72,7 +67,7 @@ contract MultiSigWalletOptimizedTest is Test {
         vm.prank(owner2);
         wallet.confirmTransaction(0);
 
-        (, bool executed, , ) = wallet.transactions(0);
+        (, bool executed,,) = wallet.transactions(0);
         assertTrue(executed);
     }
 
@@ -86,7 +81,7 @@ contract MultiSigWalletOptimizedTest is Test {
         vm.prank(owner2);
         wallet.confirmTransaction(0);
 
-        (, bool executed, , ) = wallet.transactions(0);
+        (, bool executed,,) = wallet.transactions(0);
         assertFalse(executed);
     }
 

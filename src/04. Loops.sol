@@ -34,7 +34,7 @@ contract Loops is ILoops {
 contract LoopsOptimized is ILoops {
     function loopFor() public pure {
         uint256 sum;
-        for (uint256 i; i < 20; ) {
+        for (uint256 i; i < 20;) {
             unchecked {
                 sum += i;
                 ++i;

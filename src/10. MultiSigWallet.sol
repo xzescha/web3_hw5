@@ -42,12 +42,14 @@ contract MultiSigWalletOptimized {
         if (len == 0) revert OwnersRequired();
         if (_required == 0 || _required > len) revert InvalidRequired();
 
-        for (uint256 i; i < len; ) {
+        for (uint256 i; i < len;) {
             address owner = _owners[i];
             if (owner == address(0)) revert InvalidOwner();
             owners.push(owner);
             isOwnerMap[owner] = true;
-            unchecked { ++i; }
+            unchecked {
+                ++i;
+            }
         }
         required = _required;
     }
@@ -58,12 +60,7 @@ contract MultiSigWalletOptimized {
 
     function submitTransaction(address destination, uint256 value) public onlyOwner {
         uint256 txId = transactions.length;
-        transactions.push(Transaction({
-            destination: destination,
-            executed: false,
-            confirmationCount: 0,
-            value: value
-        }));
+        transactions.push(Transaction({destination: destination, executed: false, confirmationCount: 0, value: value}));
         emit Submission(txId);
     }
 
@@ -121,19 +118,25 @@ contract MultiSigWalletOptimized {
         address[] memory _confirmations = new address[](len);
         uint256 count;
 
-        for (uint256 i; i < len; ) {
+        for (uint256 i; i < len;) {
             address owner = owners[i];
             if (confirmations[transactionId][owner]) {
                 _confirmations[count] = owner;
-                unchecked { ++count; }
+                unchecked {
+                    ++count;
+                }
             }
-            unchecked { ++i; }
+            unchecked {
+                ++i;
+            }
         }
 
         address[] memory result = new address[](count);
-        for (uint256 i; i < count; ) {
+        for (uint256 i; i < count;) {
             result[i] = _confirmations[i];
-            unchecked { ++i; }
+            unchecked {
+                ++i;
+            }
         }
         return result;
     }
